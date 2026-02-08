@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | DevAgency</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/all.min.css">
+</head>
+<body>
+  <section class="section" id="contact-section">
+    <div class="container">
+      <h2 class="section-header">Contact Us</h2>
+      <div class="contact-box">
+        <form id="contact-form">
+          <input type="text" id="contact-name" placeholder="Your Name" required>
+          <input type="email" id="contact-email" placeholder="Your Email" required>
+          <input type="tel" id="contact-phone" placeholder="Phone Number" required>
+          <textarea id="contact-message" placeholder="Your Message" required></textarea>
+          <!-- Honeypot field for spam -->
+          <input type="text" id="honeypot" style="display:none">
+          <button type="submit" id="contact-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="js/email.min.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/anti-copy.js"></script>
+  <script src="js/static-guard.js"></script>
+</body>
+</html>
