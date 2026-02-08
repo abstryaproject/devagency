@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-store">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="author" content="DevAgency Team">
+<!-- Robots: allow search engines to index your page -->
+<meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevAgency | Web Solutions Marketplace</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/all.min.css">
+<style>
+body {
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;
+}
+</style>
+</head>
+<body>
+<div id="secure-content"></div>
+<script>
+  renderProtectedContent(
+    "secure-content",
+    "PGgxPkhBTEEgTUFZRSBQcmVtaXVtIENvbnRlbnQ8L2gxPg=="
+  );
+</script>
+<!-- PARTICLES BACKGROUND -->
+<div id="particles-js"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container flex-nav">
+    <div class="logo">DEV<span>AGENCY</span></div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a href="#services" class="service-link" data-service="">Services</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact" class="contact-link">Contact</a></li>
+      <li><a href="#" class="cta-nav" id="requestProjectBtn">Request a Project</a></li>
+    </ul>
+    <div class="right-buttons">
+      <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
+      <button id="themeToggle" class="btn btn-outline">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero reveal">
+  <div class="container">
+    <h1>We Build <span>Smart Web Solutions</span></h1>
+    <p>Custom websites, apps, SaaS platforms, and developer hiring for your business, brand, or personal project.</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary" id="heroRequestBtn">Request a Project</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section reveal">
+  <div class="container">
+    <h2 class="section-header">Our Services</h2>
+    <div class="services-grid" id="servicesGrid">
+      <!-- Dynamic Services Cards Injected via JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section reveal">
+  <div class="container">
+    <h2 class="section-header">About Us</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <p>
+          <strong>DevAgency</strong> is a modern web solutions marketplace built to help businesses turn ideas into powerful digital products.
+          We connect individuals, startups, and organizations with reliable, high-quality development services—fast, transparent, and results-driven.
+          <br><br>
+          We believe getting a website or digital system shouldn’t be complicated, overpriced, or uncertain. That’s why DevAgency focuses on
+          <strong>clarity, quality, and efficiency</strong>. From business websites and e-commerce platforms to custom web applications,
+          we deliver solutions that are secure, scalable, and tailored to real business needs.
+          <br><br>
+          What sets us apart is our <strong>structured approach</strong>. Every project comes with clear pricing, defined timelines,
+          and professional execution—no guesswork, no hidden costs.
+          <br><br>
+          At DevAgency, we don’t just build websites—we build
+          <strong>digital foundations</strong> that help brands grow, compete, and succeed in today’s online world.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section bg-light reveal">
+  <div class="container">
+    <h2 class="section-header">Testimonials</h2>
+    
+
+    <div class="testimonials-slider">
+
+      <div class="testimonial-card reveal">
+        <span class="badge">Verified Client</span>
+        <div class="stars">★★★★★</div>
+        <p>
+          "DevAgency built our e-commerce platform with incredible quality and attention to detail.
+          The result exceeded our expectations."
+        </p>
+          – Abstrya Plc.,
+          → <a href="https://supershoppy.netlify.app/" target="_blank">SuperShop</a>
+      </div>
+      <br/></br/>
+      <div class="testimonial-card reveal">
+        <span class="badge">Verified Client</span>
+        <div class="stars">★★★★★</div>
+        <p>
+          “Delivered exactly to specification.”DevAgency understood the requirements clearly and delivered a dependable CBT platform on time. The result is a professional system suitable for both schools and training centers.
+        </p>
+          – IT Admin.,
+          → <a href="https://mcb-test.netlify.app/" target="_blank">MCB Test</a>
+      </div>
+      <br/></br/>
+      <div class="testimonial-card reveal">
+        <span class="badge">Verified Client</span>
+        <div class="stars">★★★★★</div>
+        <p>"Fast, beautiful, and very easy to use.”
+HALA MAYE feels modern and lightweight. Albums and artists are well organized, and switching between songs is seamless. It’s clear a lot of thought went into the user experience."</p>
+        - Shamsu Tukur, → <a href="https://halamaye.netlify.app/" target="_blank">HalaMaye</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+  
+<!-- CONTACT -->
+<section id="contact" class="section reveal">
+  <div class="container">
+    <div id="contact-include"></div>
+
+<script>
+fetch("inclide/contact.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("contact-include").innerHTML = html;
+  })
+  .catch(err => console.error(err));
+</script>
+  </div>
+</section>
+
+<!-- MODAL POPUP -->
+<div id="modalOverlay" class="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" id="modalCloseBtn">Close</button>
+
+    <!-- PROJECT FORM -->
+    <div class="form-wrapper card" id="projectForm">
+      <h2>Request a Project</h2>
+      <input type="text" id="clientName" placeholder="Full Name" required>
+      <input type="email" id="clientEmail" placeholder="Email Address" required>
+      <select id="serviceSelect">
+        <option value="">Select a service</option>
+      </select>
+      <textarea id="description" placeholder="Describe exactly what you want"></textarea>
+      <div id="featuresContainer" class="features"></div>
+      <div class="price-box" id="priceDisplay">Estimated Cost: ₦0</div>
+      <div class="price-box" id="timelineBox">Estimated Timeline: —</div>
+      <div class="form-actions">
+        <button type="button" id="submitProjectBtn" class="btn btn-primary">Submit Request</button>
+      </div>
+    </div>
+
+    <!-- HIRE FORM -->
+    <div class="form-wrapper card" id="hireForm">
+      <h2>Hire a Developer</h2>
+      <label>Hire Type</label>
+      <select id="hireType">
+        <option>Hourly</option>
+        <option>Part-Time</option>
+        <option>Full-Time</option>
+        <option>Project-Based</option>
+      </select>
+
+      <label>Required Skills</label>
+      <textarea id="skills" placeholder="HTML, CSS, JS, React, Laravel, etc"></textarea>
+
+      <label>Job / Task Description</label>
+      <textarea id="hireDescription" placeholder="Describe the work or project"></textarea>
+
+      <label>Expected Duration</label>
+      <select id="duration">
+        <option>Less than 1 week</option>
+        <option>1–4 weeks</option>
+        <option>1–3 months</option>
+        <option>Long-term</option>
+      </select>
+
+      <label>Budget Range</label>
+      <input type="text" id="budget" placeholder="Your proposed budget">
+
+      <div class="form-actions">
+        <button type="button" id="submitHireBtn" class="btn btn-primary">Submit Request</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 DevAgency Global. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="js/tsparticles.min.js"></script>
+<script src="js/particles-config.js"></script>
+<script src="js/email.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/static-guard.js"></script>
+<script>
+  const slider = document.querySelector('.testimonials-slider');
+  const nextBtn = document.querySelector('.arrow.right');
+  const prevBtn = document.querySelector('.arrow.left');
+
+  const scrollStep = 290;
+
+  nextBtn.addEventListener('click', () => {
+    slider.scrollBy({
+      left: scrollStep,
+      behavior: 'smooth'
+    });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    slider.scrollBy({
+      left: -scrollStep,
+      behavior: 'smooth'
+    });
+  });
+</script>
+<script>
+  let autoScroll;
+  const startAuto = () => {
+    autoScroll = setInterval(() => {
+      slider.scrollBy({ left: 290, behavior: 'smooth' });
+    }, 5000);
+  };
+
+  const stopAuto = () => clearInterval(autoScroll);
+
+  startAuto();
+
+  nextBtn.addEventListener('click', () => {
+    stopAuto();
+    slider.scrollBy({ left: 290, behavior: 'smooth' });
+    startAuto();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    stopAuto();
+    slider.scrollBy({ left: -290, behavior: 'smooth' });
+    startAuto();
+  });
+</script>
+<script src="js/anti-copy.js"></script>
+<script src="js/static-guard.js"></script>
+
+</body>
+</html>
