@@ -49,20 +49,6 @@
   .social-links {
     gap: 12px;
   }
-
-  .social-links a {
-    width: 44px;
-    height: 44px;
-    font-size: 16px;
-  }
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
-
 html, body {
   width: 100%;
   overflow-x: hidden;
