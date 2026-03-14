@@ -4,19 +4,31 @@
 
 // SERVICES & FEATURES DATA
 const services = {
-  landing: { name: "Landing Page Website", price: 7500, timeline:7 },
-  business: { name: "Business / Company Website", price: 15000, timeline:14 },
-  portfolio: { name: "Portfolio Website", price: 9000, timeline:10 },
-  ecommerce: { name: "E-commerce Website", price: 30000, timeline:30 },
-  blog: { name: "Blog / News Platform", price:12500, timeline:14 },
-  elearning:{name:"E-Learning Platform",price:35000,timeline:30},
-  booking:{name:"Booking / Reservation System",price:22500,timeline:21},
-  directory:{name:"Directory Website",price:20000,timeline:20},
-  custom:{name:"Custom Web App / SaaS",price:45000,timeline:45},
-  gov:{name:"Government / Institutional Portal",price:60000,timeline:60},
-  redesign:{name:"Website Redesign",price:10000,timeline:10},
-  maintenance:{name:"Maintenance & Support",price:5000,timeline:7},
-  hire:{name:"Hire a Developer",price:10000,timeline:1}
+  landing:{name:"Landing Page Website",price:7500,timeline:7,desc:"A high-converting single page website designed for marketing campaigns, product launches, and promotions."},
+
+  business:{name:"Business / Company Website",price:15000,timeline:14,desc:"A professional website for companies to showcase services, company profile, contact details, and build online credibility."},
+
+  portfolio:{name:"Portfolio Website",price:9000,timeline:10,desc:"A personal website for creatives and professionals to showcase projects, achievements, and skills."},
+
+  ecommerce:{name:"E-commerce Website",price:30000,timeline:30,desc:"A full online store with product catalog, shopping cart, secure payment system, and order management."},
+
+  blog:{name:"Blog / News Platform",price:12500,timeline:14,desc:"A modern blogging or news publishing platform with content management and article organization."},
+
+  elearning:{name:"E-Learning Platform",price:35000,timeline:30,desc:"An online education platform with courses, lessons, student accounts, and learning management tools."},
+
+  booking:{name:"Booking / Reservation System",price:22500,timeline:21,desc:"A system that allows users to book appointments, hotel rooms, services, or reservations online."},
+
+  directory:{name:"Directory Website",price:20000,timeline:20,desc:"A searchable listing website for businesses, services, or professionals with categories and profiles."},
+
+  custom:{name:"Custom Web App / SaaS",price:45000,timeline:45,desc:"A fully customized web application or SaaS platform designed specifically for your business needs."},
+
+  gov:{name:"Government / Institutional Portal",price:60000,timeline:60,desc:"A secure portal for government or institutions to manage services, information, and public access."},
+
+  redesign:{name:"Website Redesign",price:10000,timeline:10,desc:"Upgrade your existing website with modern design, improved performance, and better user experience."},
+
+  maintenance:{name:"Maintenance & Support",price:5000,timeline:7,desc:"Regular updates, bug fixes, backups, and security monitoring to keep your website running smoothly."},
+
+  hire:{name:"Hire a Developer",price:10000,timeline:1,desc:"Hire an experienced developer for custom tasks, feature development, debugging, or project support."}
 };
 
 const features = {
@@ -92,6 +104,7 @@ for (let key in services) {
   card.className = "card reveal";
   card.innerHTML = `
     <h3>${services[key].name}</h3>
+    <p class="service-desc">${services[key].desc || ""}</p>
     <p>Starting from ₦${services[key].price.toLocaleString()}</p>
     <p>Timeline: ${services[key].timeline} days</p>
     <button class="btn btn-primary request-service-btn" data-service="${key}">Request This Service</button>
