@@ -4,19 +4,97 @@
 
 // SERVICES & FEATURES DATA
 const services = {
-  landing: { name: "Landing Page Website", price: 7500, timeline:7 },
-  business: { name: "Business / Company Website", price: 15000, timeline:14 },
-  portfolio: { name: "Portfolio Website", price: 9000, timeline:10 },
-  ecommerce: { name: "E-commerce Website", price: 30000, timeline:30 },
-  blog: { name: "Blog / News Platform", price:12500, timeline:14 },
-  elearning:{name:"E-Learning Platform",price:35000,timeline:30},
-  booking:{name:"Booking / Reservation System",price:22500,timeline:21},
-  directory:{name:"Directory Website",price:20000,timeline:20},
-  custom:{name:"Custom Web App / SaaS",price:45000,timeline:45},
-  gov:{name:"Government / Institutional Portal",price:60000,timeline:60},
-  redesign:{name:"Website Redesign",price:10000,timeline:10},
-  maintenance:{name:"Maintenance & Support",price:5000,timeline:7},
-  hire:{name:"Hire a Developer",price:10000,timeline:1}
+const services = {
+  landing: { 
+    name: "Landing Page Website",
+    price: 7500,
+    timeline:7,
+    desc:"A single-page website designed to promote a product, service, campaign, or event. Perfect for marketing, startups, and online promotions."
+  },
+
+  business: {
+    name: "Business / Company Website",
+    price: 15000,
+    timeline:14,
+    desc:"A professional website for companies to showcase services, company information, contact details, and build credibility online."
+  },
+
+  portfolio: {
+    name: "Portfolio Website",
+    price: 9000,
+    timeline:10,
+    desc:"A personal website for freelancers, designers, developers, photographers, and professionals to showcase their work and achievements."
+  },
+
+  ecommerce: {
+    name: "E-commerce Website",
+    price: 30000,
+    timeline:30,
+    desc:"An online store that allows customers to browse products, add to cart, and make secure payments online."
+  },
+
+  blog: {
+    name: "Blog / News Platform",
+    price:12500,
+    timeline:14,
+    desc:"A content publishing platform for blogs, news websites, magazines, or article-based platforms with easy content management."
+  },
+
+  elearning:{
+    name:"E-Learning Platform",
+    price:35000,
+    timeline:30,
+    desc:"An online learning platform for schools, trainers, and organizations to deliver courses, videos, quizzes, and student management."
+  },
+
+  booking:{
+    name:"Booking / Reservation System",
+    price:22500,
+    timeline:21,
+    desc:"A website that allows customers to book services online such as hotels, appointments, rentals, or event reservations."
+  },
+
+  directory:{
+    name:"Directory Website",
+    price:20000,
+    timeline:20,
+    desc:"A listing platform where businesses, services, or professionals can be categorized and discovered by users."
+  },
+
+  custom:{
+    name:"Custom Web App / SaaS",
+    price:45000,
+    timeline:45,
+    desc:"A fully customized web application or SaaS platform built to solve a specific business problem or provide unique digital services."
+  },
+
+  gov:{
+    name:"Government / Institutional Portal",
+    price:60000,
+    timeline:60,
+    desc:"A secure and scalable portal designed for government agencies, schools, or institutions to manage information and services online."
+  },
+
+  redesign:{
+    name:"Website Redesign",
+    price:10000,
+    timeline:10,
+    desc:"Upgrade and modernize your existing website with improved design, better performance, and enhanced user experience."
+  },
+
+  maintenance:{
+    name:"Maintenance & Support",
+    price:5000,
+    timeline:7,
+    desc:"Regular updates, bug fixes, security monitoring, backups, and technical support to keep your website running smoothly."
+  },
+
+  hire:{
+    name:"Hire a Developer",
+    price:10000,
+    timeline:1,
+    desc:"Hire a skilled developer for your project, feature updates, bug fixing, or custom development tasks."
+  }
 };
 
 const features = {
@@ -86,18 +164,18 @@ for(let key in services){
 }
 
 // DYNAMIC SERVICES GRID
-for (let key in services) {
-  if (key === "hire") continue;
-  const card = document.createElement("div");
-  card.className = "card reveal";
-  card.innerHTML = `
-    <h3>${services[key].name}</h3>
-    <p>Starting from ₦${services[key].price.toLocaleString()}</p>
-    <p>Timeline: ${services[key].timeline} days</p>
-    <button class="btn btn-primary request-service-btn" data-service="${key}">Request This Service</button>
-  `;
-  servicesGrid.appendChild(card);
-}
+card.innerHTML = `
+<h3>${services[key].name}</h3>
+
+<p>${services[key].desc}</p>
+
+<p>Starting from ₦${services[key].price.toLocaleString()}</p>
+<p>Timeline: ${services[key].timeline} days</p>
+
+<button class="btn btn-primary request-service-btn" data-service="${key}">
+Request This Service
+</button>
+`;
 
 // RENDER FEATURES
 function renderFeatures(service){
