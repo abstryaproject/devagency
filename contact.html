@@ -93,7 +93,103 @@
 </script>
   <!-- Scripts -->
   <script src="js/email.min.js"></script>
-  <script src="js/contact.js"></script>
+  <script>
+    // ==============================
+// DEVAGENCY CONTACT FORM JS
+// ==============================
+
+emailjs.init("B0TUfCsEZ03eoI5wF"); // Use same public key for consistency
+
+const contactForm = document.getElementById("contact-form");
+const contactBtn = document.getElementById("contact-btn");
+const HONEYPOT_ID = "honeypot";
+const formLoadedAt = Date.now();
+
+// ==============================
+// LIVE VALIDATION
+// ==============================
+function validateContactForm() {
+  const name = document.getElementById("contact-name").value.trim();
+  const email = document.getElementById("contact-email").value.trim();
+  const phone = document.getElementById("contact-phone").value.trim();
+  const message = document.getElementById("contact-message").value.trim();
+  contactBtn.disabled = !(name && email && phone && message);
+}
+
+// Attach validation listeners
+["contact-name", "contact-email", "contact-phone", "contact-message"].forEach(id =>
+  document.getElementById(id).addEventListener("input", validateContactForm)
+);
+contactBtn.disabled = true;
+
+// ==============================
+// SEND EMAIL
+// ==============================
+function sendEmail(templateId, params, onSuccess) {
+  emailjs.send("service_q4vtlp9", templateId, params)
+    .then(() => {
+      showToast("Message sent successfully!");
+      if (typeof onSuccess === "function") onSuccess();
+    })
+    .catch(err => {
+      console.error("EmailJS Error:", err);
+      showToast("Failed to send message. Try again.");
+      contactBtn.disabled = false;
+      contactBtn.textContent = "Send Message";
+    });
+}
+
+// ==============================
+// FORM SUBMIT
+// ==============================
+contactForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const honeypot = document.getElementById(HONEYPOT_ID)?.value;
+  if (honeypot) return;
+
+  if ((Date.now() - formLoadedAt) < 5000) return; // Spam bot check
+
+  const name = document.getElementById("contact-name").value.trim();
+  const email = document.getElementById("contact-email").value.trim();
+  const phone = document.getElementById("contact-phone").value.trim();
+  const message = document.getElementById("contact-message").value.trim();
+
+  if (!name || !email || !phone || !message) {
+    showToast("Please fill all required fields!");
+    return;
+  }
+
+  contactBtn.disabled = true;
+  contactBtn.textContent = "Sending...";
+
+  const adminParams = {
+    client_name: name,
+    client_email: email,
+    client_phone: phone,
+    client_message: message
+  };
+
+  sendEmail("template_17uznij", adminParams, () => {
+    // Auto-reply
+    emailjs.send("service_q4vtlp9", "template_vs8zr8y", { client_name: name, client_email: email });
+
+    contactForm.reset();
+    contactBtn.textContent = "Send Message";
+    contactBtn.disabled = true;
+  });
+});
+
+// ==============================
+// TOAST FUNCTION
+// ==============================
+const toast = document.getElementById("toast");
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.style.display = "block";
+  setTimeout(() => { toast.style.display = "none"; }, 3000);
+}
+  </script>
   <script src="js/anti-copy.js"></script>
 </body>
 </html>
