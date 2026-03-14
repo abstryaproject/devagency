@@ -9,6 +9,14 @@
 <link rel="stylesheet" href="css/all.min.css">
 </head>
 <body>
+  <nav class="navbar">
+  <div class="container flex-nav">
+    <div class="logo">DEV<span>AGENCY</span></div>
+    <div class="right-buttons">
+      <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i><a href="index.html">Back</a></div>
+    </div>
+  </div>
+</nav>
   <section class="section" id="contact-section">
     <div class="container">
       <h2 class="section-header">Contact Us</h2>
@@ -25,11 +33,67 @@
       </div>
     </div>
   </section>
+  <!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 DevAgency Global. All Rights Reserved.</p>
+  </div>
+</footer>
 
+<!-- SCRIPTS -->
+<script src="js/tsparticles.min.js"></script>
+<script src="js/particles-config.js"></script>
+<script src="js/email.min.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/anti-copy.js"></script>
+<script>
+  const slider = document.querySelector('.testimonials-slider');
+  const nextBtn = document.querySelector('.arrow.right');
+  const prevBtn = document.querySelector('.arrow.left');
+
+  const scrollStep = 290;
+
+  nextBtn.addEventListener('click', () => {
+    slider.scrollBy({
+      left: scrollStep,
+      behavior: 'smooth'
+    });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    slider.scrollBy({
+      left: -scrollStep,
+      behavior: 'smooth'
+    });
+  });
+</script>
+<script>
+  let autoScroll;
+  const startAuto = () => {
+    autoScroll = setInterval(() => {
+      slider.scrollBy({ left: 290, behavior: 'smooth' });
+    }, 5000);
+  };
+
+  const stopAuto = () => clearInterval(autoScroll);
+
+  startAuto();
+
+  nextBtn.addEventListener('click', () => {
+    stopAuto();
+    slider.scrollBy({ left: 290, behavior: 'smooth' });
+    startAuto();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    stopAuto();
+    slider.scrollBy({ left: -290, behavior: 'smooth' });
+    startAuto();
+  });
+</script>
   <!-- Scripts -->
   <script src="js/email.min.js"></script>
   <script src="js/contact.js"></script>
   <script src="js/anti-copy.js"></script>
-  <script src="js/static-guard.js"></script>
 </body>
 </html>
