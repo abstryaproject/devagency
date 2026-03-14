@@ -4,19 +4,19 @@
 
 // SERVICES & FEATURES DATA
 const services = {
-  landing:{name:"Landing Page Website",price:7500,timeline:7,desc:"A high-converting single-page website for marketing campaigns, product launches, or promotions."},
-  business:{name:"Business / Company Website",price:15000,timeline:14,desc:"Professional company website to showcase services, brand identity, and contact information."},
-  portfolio:{name:"Portfolio Website",price:9000,timeline:10,desc:"Personal website for developers, designers, and creatives to display projects and achievements."},
-  ecommerce:{name:"E-commerce Website",price:30000,timeline:30,desc:"Complete online store with product catalog, cart system, and secure payment integration."},
-  blog:{name:"Blog / News Platform",price:12500,timeline:14,desc:"A blogging or news publishing platform with article management and SEO support."},
-  elearning:{name:"E-Learning Platform",price:35000,timeline:30,desc:"Online learning system with courses, lessons, and student management."},
-  booking:{name:"Booking / Reservation System",price:22500,timeline:21,desc:"Allow users to book appointments, rooms, or services online."},
-  directory:{name:"Directory Website",price:20000,timeline:20,desc:"Listing platform for businesses or professionals with search and category filters."},
-  custom:{name:"Custom Web App / SaaS",price:45000,timeline:45,desc:"Fully custom web application tailored to unique business needs."},
-  gov:{name:"Government / Institutional Portal",price:60000,timeline:60,desc:"Secure portal for government or institutions to provide digital services."},
-  redesign:{name:"Website Redesign",price:10000,timeline:10,desc:"Modernize your existing website with better performance and UI."},
-  maintenance:{name:"Maintenance & Support",price:5000,timeline:7,desc:"Regular updates, bug fixes, security checks, and technical support."},
-  hire:{name:"Hire a Developer",price:10000,timeline:1,desc:"Hire a developer for custom tasks, bug fixes, or feature development."}
+  landing: { name: "Landing Page Website", price: 7500, timeline:7 },
+  business: { name: "Business / Company Website", price: 15000, timeline:14 },
+  portfolio: { name: "Portfolio Website", price: 9000, timeline:10 },
+  ecommerce: { name: "E-commerce Website", price: 30000, timeline:30 },
+  blog: { name: "Blog / News Platform", price:12500, timeline:14 },
+  elearning:{name:"E-Learning Platform",price:35000,timeline:30},
+  booking:{name:"Booking / Reservation System",price:22500,timeline:21},
+  directory:{name:"Directory Website",price:20000,timeline:20},
+  custom:{name:"Custom Web App / SaaS",price:45000,timeline:45},
+  gov:{name:"Government / Institutional Portal",price:60000,timeline:60},
+  redesign:{name:"Website Redesign",price:10000,timeline:10},
+  maintenance:{name:"Maintenance & Support",price:5000,timeline:7},
+  hire:{name:"Hire a Developer",price:10000,timeline:1}
 };
 
 const features = {
@@ -56,343 +56,251 @@ const serviceFeaturesMap = {
 };
 
 // DOM ELEMENTS
-const serviceSelect=document.getElementById("serviceSelect");
-const featuresContainer=document.getElementById("featuresContainer");
-const priceDisplay=document.getElementById("priceDisplay");
-const timelineBox=document.getElementById("timelineBox");
-const modalOverlay=document.getElementById("modalOverlay");
-const modalCloseBtn=document.getElementById("modalCloseBtn");
-const projectForm=document.getElementById("projectForm");
-const hireForm=document.getElementById("hireForm");
-const submitProjectBtn=document.getElementById("submitProjectBtn");
-const submitHireBtn=document.getElementById("submitHireBtn");
+const serviceSelect = document.getElementById("serviceSelect");
+const featuresContainer = document.getElementById("featuresContainer");
+const priceDisplay = document.getElementById("priceDisplay");
+const timelineBox = document.getElementById("timelineBox");
+const modalOverlay = document.getElementById("modalOverlay");
+const modalCloseBtn = document.getElementById("modalCloseBtn");
+const projectForm = document.getElementById("projectForm");
+const hireForm = document.getElementById("hireForm");
+const submitProjectBtn = document.getElementById("submitProjectBtn");
+const submitHireBtn = document.getElementById("submitHireBtn");
 
-const themeToggle=document.getElementById("themeToggle");
-const mobileMenuBtn=document.getElementById("mobile-menu");
-const navMenu=document.getElementById("nav-menu");
+const themeToggle = document.getElementById("themeToggle");
+const mobileMenuBtn = document.getElementById("mobile-menu");
+const navMenu = document.getElementById("nav-menu");
 
-const heroRequestBtn=document.getElementById("heroRequestBtn");
-const requestProjectBtn=document.getElementById("requestProjectBtn");
+const heroRequestBtn = document.getElementById("heroRequestBtn");
+const requestProjectBtn = document.getElementById("requestProjectBtn");
 
-const servicesGrid=document.getElementById("servicesGrid");
+const servicesGrid = document.getElementById("servicesGrid");
 
 // ==============================
 // POPULATE SERVICES DROPDOWN
-if(serviceSelect){
-  for(let key in services){
-    let opt=document.createElement("option");
-    opt.value=key;
-    opt.textContent=services[key].name;
-    serviceSelect.appendChild(opt);
-  }
+for(let key in services){
+  let opt = document.createElement("option");
+  opt.value = key;
+  opt.textContent = services[key].name;
+  serviceSelect.appendChild(opt);
 }
 
-// ==============================
 // DYNAMIC SERVICES GRID
-if(servicesGrid){
-  for(let key in services){
-    if(key==="hire") continue;
-
-    const card=document.createElement("div");
-    card.className="card reveal";
-
-    card.innerHTML=`
-      <h3>${services[key].name}</h3>
-      <p>${services[key].desc}</p>
-      <p>Starting from ₦${services[key].price.toLocaleString()}</p>
-      <p>Timeline: ${services[key].timeline} days</p>
-      <button class="btn btn-primary request-service-btn" data-service="${key}">
-      Request This Service
-      </button>
-    `;
-
-    servicesGrid.appendChild(card);
-  }
+for (let key in services) {
+  if (key === "hire") continue;
+  const card = document.createElement("div");
+  card.className = "card reveal";
+  card.innerHTML = `
+    <h3>${services[key].name}</h3>
+    <p>Starting from ₦${services[key].price.toLocaleString()}</p>
+    <p>Timeline: ${services[key].timeline} days</p>
+    <button class="btn btn-primary request-service-btn" data-service="${key}">Request This Service</button>
+  `;
+  servicesGrid.appendChild(card);
 }
 
-// ==============================
 // RENDER FEATURES
 function renderFeatures(service){
-  if(!featuresContainer) return;
-
-  featuresContainer.innerHTML="";
-
+  featuresContainer.innerHTML = "";
   if(service==="hire") return;
-
   serviceFeaturesMap[service]?.forEach(f=>{
-    let feature=features[f];
-
-    let label=document.createElement("label");
-
-    label.innerHTML=`
-      <input type="checkbox" value="${f}">
-      <span>${feature.name} ⓘ (+₦${feature.price.toLocaleString()})</span>
-    `;
-
+    let feature = features[f];
+    let label = document.createElement("label");
+    label.innerHTML = `<input type="checkbox" value="${f}"> <span>${feature.name} ⓘ (+₦${feature.price.toLocaleString()})</span>`;
     featuresContainer.appendChild(label);
   });
 }
 
-// ==============================
 // CALCULATE TOTAL
 function calculateTotal(){
-  if(!serviceSelect || !priceDisplay) return;
-
-  let base=services[serviceSelect.value]?.price||0;
-
-  let selected=[...featuresContainer.querySelectorAll("input:checked")]
-  .reduce((a,i)=>a+features[i.value].price,0);
-
-  priceDisplay.textContent="Estimated Cost: ₦"+(base+selected).toLocaleString();
+  let base = services[serviceSelect.value]?.price || 0;
+  let selected = [...featuresContainer.querySelectorAll("input:checked")].reduce((a,i)=>a+features[i.value].price,0);
+  priceDisplay.textContent = "Estimated Cost: ₦"+(base+selected).toLocaleString();
 }
 
-// ==============================
 // UPDATE TIMELINE
 function updateTimeline(service){
-  if(!timelineBox) return;
-
-  let days=services[service]?.timeline;
-
-  timelineBox.textContent=
-  days?`Estimated Timeline: ${days} days`
-  :"Estimated Timeline: Custom agreement";
+  let days = services[service]?.timeline;
+  timelineBox.textContent = days ? `Estimated Timeline: ${days} days` : "Estimated Timeline: Custom agreement";
 }
 
-// ==============================
 // OPEN MODAL
-function openModal(type,serviceKey=""){
-  if(!modalOverlay) return;
-
-  modalOverlay.style.display="flex";
-
+function openModal(type, serviceKey=""){
+  modalOverlay.style.display = "flex";
   if(type==="project"){
-    if(projectForm) projectForm.style.display="block";
-    if(hireForm) hireForm.style.display="none";
-
-    if(serviceSelect){
-      serviceSelect.value=serviceKey||"";
-    }
-
-    renderFeatures(serviceKey||"");
+    projectForm.style.display = "block";
+    hireForm.style.display = "none";
+    serviceSelect.value = serviceKey || "";
+    renderFeatures(serviceKey || "");
     calculateTotal();
-    updateTimeline(serviceKey||"");
-  }else{
-    if(hireForm) hireForm.style.display="block";
-    if(projectForm) projectForm.style.display="none";
+    updateTimeline(serviceKey || "");
+  } else {
+    hireForm.style.display = "block";
+    projectForm.style.display = "none";
   }
 }
 
 // CLOSE MODAL
-modalCloseBtn?.addEventListener("click",()=>{
-  modalOverlay.style.display="none";
-});
+modalCloseBtn.addEventListener("click", ()=>{ modalOverlay.style.display = "none"; });
 
-// ==============================
 // SERVICE SELECT CHANGE
-serviceSelect?.addEventListener("change",()=>{
+serviceSelect.addEventListener("change", ()=>{
   renderFeatures(serviceSelect.value);
   calculateTotal();
   updateTimeline(serviceSelect.value);
 });
 
 // FEATURE CHANGE
-featuresContainer?.addEventListener("change",calculateTotal);
+featuresContainer.addEventListener("change", calculateTotal);
 
-// ==============================
 // EMAILJS INIT
-if(typeof emailjs!=="undefined"){
-  emailjs.init("B0TUfCsEZ03eoI5wF");
-}
+emailjs.init("B0TUfCsEZ03eoI5wF");
 
-// ==============================
 // SAFE EMAIL SEND
-function sendEmailSafe(templateParams,templateId,successMsg="Request sent successfully!"){
-
-  const honeypot=document.getElementById("website")?.value;
-
-  if(honeypot){
-    console.warn("Spam blocked by honeypot");
-    return;
-  }
-
-  console.log(`Sending EmailJS (${templateId})`,templateParams);
-
-  return emailjs.send("service_q4vtlp9",templateId,templateParams)
-
-  .then(res=>{
-    console.log("EmailJS Success:",res);
-    alert(successMsg);
-  })
-
-  .catch(err=>{
-    console.error("EmailJS Error:",err);
-    alert("Failed to send request. Try again!");
-  });
+function sendEmailSafe(templateParams, templateId, successMsg="Request sent successfully!"){
+  const honeypot = document.getElementById("website")?.value;
+  if(honeypot){ console.warn("Spam blocked by honeypot"); return; }
+  console.log(`Sending EmailJS (${templateId}) with params:`, templateParams);
+  return emailjs.send("service_q4vtlp9", templateId, templateParams)
+    .then(res => { console.log("EmailJS Success:", res); alert(successMsg); })
+    .catch(err => { console.error("EmailJS Error:", err); alert("Failed to send request. Try again!"); });
 }
 
 // ==============================
 // PROJECT FORM SUBMISSION
-submitProjectBtn?.addEventListener("click",()=>{
+submitProjectBtn.addEventListener("click", () => {
+  const name = document.getElementById("clientName").value.trim();
+  const email = document.getElementById("clientEmail").value.trim();
+  const serviceName = services[serviceSelect.value]?.name || "";
+  const selectedFeatures = [...featuresContainer.querySelectorAll("input:checked")]
+                             .map(f => features[f.value].name)
+                             .join(", ");
+  const desc = document.getElementById("description").value.trim();
 
-  const name=document.getElementById("clientName").value.trim();
-  const email=document.getElementById("clientEmail").value.trim();
-
-  const serviceName=services[serviceSelect.value]?.name||"";
-
-  const selectedFeatures=[...featuresContainer.querySelectorAll("input:checked")]
-  .map(f=>features[f.value].name).join(", ");
-
-  const desc=document.getElementById("description").value.trim();
-
-  if(!name||!email||!serviceSelect.value){
+  if(!name || !email || !serviceSelect.value){
     alert("Please fill all required fields!");
     return;
   }
 
-  submitProjectBtn.disabled=true;
-  submitProjectBtn.textContent="Sending...";
+  submitProjectBtn.disabled = true;
+  submitProjectBtn.textContent = "Sending...";
 
-  const contactParams={
-    to_email:"abdullahiibrahima5126@gmail.com",
-    client_name:name,
-    client_email:email,
-    service_name:serviceName,
-    features:selectedFeatures||"None",
-    description:desc||"No description provided"
+  const contactParams = {
+    to_email: "abdullahiibrahima5126@gmail.com",
+    client_name: name,
+    client_email: email,
+    service_name: serviceName,
+    features: selectedFeatures || "None",
+    description: desc || "No description provided"
   };
 
-  const autoReplyParams={
-    to_email:email,
-    client_name:name
-  };
+  const autoReplyParams = { to_email: email, client_name: name };
 
-  sendEmailSafe(contactParams,"template_0jr4v0w","Project request sent successfully!")
-  .finally(()=>{
-    submitProjectBtn.disabled=false;
-    submitProjectBtn.textContent="Submit Request";
-    projectForm.reset();
-    modalOverlay.style.display="none";
-  });
+  sendEmailSafe(contactParams, "template_0jr4v0w", "Project request sent successfully!")
+    .finally(()=>{
+      submitProjectBtn.disabled = false;
+      submitProjectBtn.textContent = "Submit Request";
+      projectForm.reset();
+      modalOverlay.style.display = "none";
+    });
 
-  sendEmailSafe(autoReplyParams,"template_r1bofla","Auto-reply sent to your email successfully.");
+  sendEmailSafe(autoReplyParams, "template_r1bofla", "Auto-reply sent to your email successfully.");
 });
 
 // ==============================
 // HIRE FORM SUBMISSION
-submitHireBtn?.addEventListener("click",()=>{
+submitHireBtn.addEventListener("click", () => {
+  const hireType = document.getElementById("hireType").value;
+  const skills = document.getElementById("skills").value.trim();
+  const desc = document.getElementById("hireDescription").value.trim();
+  const duration = document.getElementById("duration").value;
+  const budget = document.getElementById("budget").value.trim();
 
-  const hireType=document.getElementById("hireType").value;
-  const skills=document.getElementById("skills").value.trim();
-  const desc=document.getElementById("hireDescription").value.trim();
-  const duration=document.getElementById("duration").value;
-  const budget=document.getElementById("budget").value.trim();
-
-  if(!skills||!desc||!budget){
+  if(!skills || !desc || !budget){
     alert("Please fill all required fields!");
     return;
   }
 
-  submitHireBtn.disabled=true;
-  submitHireBtn.textContent="Sending...";
+  submitHireBtn.disabled = true;
+  submitHireBtn.textContent = "Sending...";
 
-  const hireParams={
-    to_email:"abdullahiibrahima5126@gmail.com",
-    client_name:"Hire Request",
-    client_email:"N/A",
-    service_name:hireType,
-    features:skills,
-    description:`Duration: ${duration}\nBudget: ₦${budget}\n\n${desc}`
+  const hireParams = {
+    to_email: "abdullahiibrahima5126@gmail.com",
+    client_name: "Hire Request",
+    client_email: "N/A",
+    service_name: hireType,
+    features: skills,
+    description: `Duration: ${duration}\nBudget: ₦${budget}\n\n${desc}`
   };
 
-  sendEmailSafe(hireParams,"template_0jr4v0w","Hire request sent successfully!")
-  .finally(()=>{
-    submitHireBtn.disabled=false;
-    submitHireBtn.textContent="Submit Request";
-    hireForm.reset();
-    modalOverlay.style.display="none";
-  });
+  sendEmailSafe(hireParams, "template_0jr4v0w", "Hire request sent successfully!")
+    .finally(()=>{
+      submitHireBtn.disabled = false;
+      submitHireBtn.textContent = "Submit Request";
+      hireForm.reset();
+      modalOverlay.style.display = "none";
+    });
 });
-
-// ==============================
 // HERO & SERVICE BUTTONS
-heroRequestBtn?.addEventListener("click",()=>openModal("project"));
-requestProjectBtn?.addEventListener("click",()=>openModal("project"));
+heroRequestBtn.addEventListener("click", ()=>openModal("project"));
+requestProjectBtn.addEventListener("click", ()=>openModal("project"));
 
-document.addEventListener("click",(e)=>{
-  if(e.target.classList.contains("request-service-btn")){
-    openModal("project",e.target.dataset.service);
-  }
+document.querySelectorAll(".request-service-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>openModal("project", btn.dataset.service));
 });
 
-// ==============================
 // THEME TOGGLE
-themeToggle?.addEventListener("click",()=>{
+themeToggle.addEventListener("click", ()=>{
   document.body.classList.toggle("dark");
-  themeToggle.textContent=
-  document.body.classList.contains("dark")?"☀️":"🌙";
+  themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
 });
 
-// ==============================
 // MOBILE MENU
-mobileMenuBtn?.addEventListener("click",()=>{
-  navMenu?.classList.toggle("active");
-});
+mobileMenuBtn.addEventListener("click", ()=>{ navMenu.classList.toggle("active"); });
 
-// ==============================
 // SCROLL REVEAL
-const revealElements=document.querySelectorAll(".reveal");
-
-function revealOnScroll(){
-
-  for(let el of revealElements){
-
-    const top=el.getBoundingClientRect().top;
-    const windowHeight=window.innerHeight;
-
-    if(top<windowHeight-100){
-      el.classList.add("show");
-    }
+const revealElements = document.querySelectorAll(".reveal");
+function revealOnScroll() {
+  for (let el of revealElements){
+    const top = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    if(top < windowHeight - 100) el.classList.add("show");
   }
 }
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
 
-window.addEventListener("scroll",revealOnScroll);
-window.addEventListener("load",revealOnScroll);
-
-// ==============================
 // CONTACT FORM SUBMISSION
-const contactForm=document.getElementById("contact-form");
-const contactBtn=document.getElementById("contact-btn");
+const contactForm = document.getElementById("contact-form");
+const contactBtn = document.getElementById("contact-btn");
 
-contactForm?.addEventListener("submit",(e)=>{
-
+contactForm.addEventListener("submit", (e)=>{
   e.preventDefault();
+  const name = document.getElementById("contact-name").value.trim();
+  const email = document.getElementById("contact-email").value.trim();
+  const phone = document.getElementById("contact-phone").value.trim();
+  const message = document.getElementById("contact-message").value.trim();
 
-  const name=document.getElementById("contact-name").value.trim();
-  const email=document.getElementById("contact-email").value.trim();
-  const phone=document.getElementById("contact-phone").value.trim();
-  const message=document.getElementById("contact-message").value.trim();
-
-  if(!name||!email||!phone||!message){
+  if(!name || !email || !phone || !message){
     alert("Please fill all fields!");
     return;
   }
 
-  contactBtn.disabled=true;
-  contactBtn.textContent="Sending...";
+  contactBtn.disabled = true;
+  contactBtn.textContent = "Sending...";
 
-  const contactParams={
-    to_email:"abdullahiibrahima5126@gmail.com",
-    client_name:name,
-    client_email:email,
-    client_phone:phone,
-    description:message
+  const contactParams = {
+    to_email: "abdullahiibrahima5126@gmail.com",
+    client_name: name,
+    client_email: email,
+    client_phone: phone,
+    description: message
   };
 
-  sendEmailSafe(contactParams,"template_0jr4v0w","Message sent successfully!")
-  .finally(()=>{
-    contactBtn.disabled=false;
-    contactBtn.textContent="Send Message";
-    contactForm.reset();
-  });
-
+  sendEmailSafe(contactParams, "template_0jr4v0w", "Message sent successfully!")
+    .finally(()=>{
+      contactBtn.disabled = false;
+      contactBtn.textContent = "Send Message";
+      contactForm.reset();
+    });
 });
